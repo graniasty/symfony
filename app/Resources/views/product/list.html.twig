@@ -1,0 +1,36 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Lista produktów{% endblock %}
+
+{% block body %}
+<h1>{{ block('title') }}</h1>
+{{ zmienna }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id produktu</th>
+                <th>Nazwa </th>
+                <th>Cena</th>
+                <th>Opis</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr><td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.description }}
+                    </td>
+                <td><a class="btn btn-primary btn-small" href="{{ path('app_product_addtocart', {'id': product.id}) }}">Dodaj do koszyka</a></td>
+            </tr>
+
+            {% else %}
+                <tr>
+                    <td colspan="4">Nie znaleziono produktów</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
